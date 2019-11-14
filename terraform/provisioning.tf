@@ -10,6 +10,13 @@ resource "azurerm_resource_group" "main" {
         location = "eastus"
 }
 
+resource "azurerm_public_ip" "pip1" {
+  name                = "${var.prefix}-pip1"
+  location            = "${azurerm_resource_group.main.location}"
+  resource_group_name = "${azurerm_resource_group.main.name}"
+  allocation_method   = "Static"
+}
+
 resource "azurerm_virtual_network" "main" {
   name                = "${var.prefix}-network"
   address_space       = ["10.0.0.0/16"]
@@ -33,7 +40,7 @@ resource "azurerm_network_interface" "nicS1" {
     name                          = "${var.prefix}-nicS1-ipconf"
     subnet_id                     = "${azurerm_subnet.internal.id}"
     private_ip_address_allocation = "Static"
-    private_ip_address = "10.0.2.1"
+    private_ip_address = "10.0.2.33"
   }
 }
 
@@ -46,7 +53,7 @@ resource "azurerm_network_interface" "nicS2" {
     name                          = "${var.prefix}-nicS2-ipconf"
     subnet_id                     = "${azurerm_subnet.internal.id}"
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = "Enabled"
+    public_ip_address_id = "${azurerm_public_ip.pip1.id}"
   }
 }
 
@@ -55,6 +62,7 @@ resource "azurerm_virtual_machine" "S1" {
     location              = "${azurerm_resource_group.main.location}"
     resource_group_name   = "${azurerm_resource_group.main.name}"
     network_interface_ids = ["${azurerm_network_interface.nicS1.id}", "${azurerm_network_interface.nicS2.id}"]
+    primary_network_interface_id = "${azurerm_network_interface.nicS1.id}"
     vm_size               = "Standard_DS1_v2"
 
     storage_image_reference {
@@ -71,7 +79,7 @@ resource "azurerm_virtual_machine" "S1" {
   }
   os_profile {
     computer_name  = "S1"
-    admin_username = "test"
+    admin_username = "mareak"
     admin_password = "Password1234!"
   }
   os_profile_linux_config {
