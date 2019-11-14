@@ -1,3 +1,6 @@
+.gitignore
+export.sh
+
 */.terraform/*
 
 *.tfstate
