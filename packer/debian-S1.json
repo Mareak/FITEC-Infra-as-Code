@@ -1,14 +1,21 @@
 {
+  "variables": {
+    "ARM_CLIENT_ID": "{{env `ARM_CLIENT_ID`}}",
+    "ARM_CLIENT_SECRET": "{{env `ARM_CLIENT_SECRET`}}",
+    "ARM_TENANT_ID": "{{env `ARM_TENANT_ID`}}",
+    "ARM_SUBSCRIPTION_ID": "{{env `ARM_SUBSCRIPTION_ID`}}"
+  },
+
   "builders": [{
     "type": "azure-arm",
     
-    "client_id": "{{env `ARM_CLIENT_ID`}}",
-    "client_secret": "{{env `ARM_CLIENT_SECRET`}}",
-    "tenant_id": "{{env `ARM_TENANT_ID`}}",
-    "subscription_id": "{{env `ARM_SUBSCRIPTION_ID`}}",
+    "client_id": "{{user `ARM_CLIENT_ID`}}",
+    "client_secret": "{{user `ARM_CLIENT_SECRET`}}",
+    "tenant_id": "{{user `ARM_TENANT_ID`}}",
+    "subscription_id": "{{user `ARM_SUBSCRIPTION_ID`}}",
 
-    "managed_image_resource_group_name": "myResourceGroup",
-    "managed_image_name": "myPackerImage",
+    "managed_image_resource_group_name": "mareak.fitec.P1.RG",
+    "managed_image_name": "debianS1",
 
     "os_type": "Linux",
     "image_publisher": "Debian",
@@ -19,9 +26,8 @@
         "dept": "Engineering",
         "task": "Image deployment"
     },
-
     "location": "East US",
-    "vm_size": "Standard_DS2_v2"
+    "vm_size": "Standard_DS1_v2"
   }],
   "provisioners": [{
     "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",

@@ -10,6 +10,11 @@ resource "azurerm_resource_group" "main" {
         location = "eastus"
 }
 
+data "azurerm_image" "image" {
+  name                = "debianS1"
+  resource_group_name = "${azurerm_resource_group.main.name}"
+}
+
 resource "azurerm_public_ip" "pip1" {
   name                = "${var.prefix}-pip1"
   location            = "${azurerm_resource_group.main.location}"
@@ -65,12 +70,10 @@ resource "azurerm_virtual_machine" "S1" {
     primary_network_interface_id = "${azurerm_network_interface.nicS1.id}"
     vm_size               = "Standard_DS1_v2"
 
-    storage_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "16.04-LTS"
-    version   = "latest"
+   storage_image_reference {
+    id="${data.azurerm_image.image.id}"
   }
+
   storage_os_disk {
     name              = "osdisk-S1"
     caching           = "ReadWrite"
