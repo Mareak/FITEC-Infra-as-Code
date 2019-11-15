@@ -1,0 +1,5 @@
+---
+
+- name: installation of dnsmasq
+- import_tasks: install.yml
+
