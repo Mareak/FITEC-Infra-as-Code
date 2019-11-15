@@ -10,6 +10,27 @@ resource "azurerm_resource_group" "main" {
         location = "eastus"
 }
 
+resource "azurerm_network_security_group" "main" {
+  name     = "${var.prefix}-webservers"
+  location = "${azurerm_resource_group.main.location}"
+  resource_group_name = "${azurerm_resource_group.main.name}"
+}
+
+resource "azurerm_network_security_rule" "web" {
+  name                       = "{var.prefix}-http-access-rule"
+  network_security_group_name = "${azurerm_network_security_group.main.name}"
+  resource_group_name         = "${azurerm_resource_group.main.name}"
+  priority                    = 100
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "80"
+  source_address_prefix       = "*"
+  destination_address_prefix  = "*"
+}
+
+
 data "azurerm_image" "image" {
   name                = "debianS1"
   resource_group_name = "${azurerm_resource_group.main.name}"
@@ -53,6 +74,7 @@ resource "azurerm_network_interface" "nicS2" {
   name                = "${var.prefix}-nicS2"
   location            = "${azurerm_resource_group.main.location}"
   resource_group_name = "${azurerm_resource_group.main.name}"
+  network_security_group_id = "${azurerm_network_security_group.main.id}"
 
   ip_configuration {
     name                          = "${var.prefix}-nicS2-ipconf"
@@ -66,8 +88,8 @@ resource "azurerm_virtual_machine" "S1" {
     name                  = "S1"
     location              = "${azurerm_resource_group.main.location}"
     resource_group_name   = "${azurerm_resource_group.main.name}"
-    network_interface_ids = ["${azurerm_network_interface.nicS1.id}", "${azurerm_network_interface.nicS2.id}"]
-    primary_network_interface_id = "${azurerm_network_interface.nicS1.id}"
+    network_interface_ids = ["${azurerm_network_interface.nicS2.id}", "${azurerm_network_interface.nicS1.id}"]
+    primary_network_interface_id = "${azurerm_network_interface.nicS2.id}"
     vm_size               = "Standard_DS1_v2"
 
    storage_image_reference {
