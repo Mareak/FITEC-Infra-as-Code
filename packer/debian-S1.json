@@ -6,6 +6,12 @@
     "ARM_SUBSCRIPTION_ID": "{{env `ARM_SUBSCRIPTION_ID`}}"
   },
 
+  {
+  "type": "file",
+  "source": "/Users/mareak/mareak-fitec-P1",
+  "destination": "/tmp/"
+ },
+
   "builders": [{
     "type": "azure-arm",
     
@@ -34,7 +40,7 @@
     "inline": [
       "apt-get update",
       "apt-get upgrade -y",
-	  "apt-get -y install nginx ansible",
+	  "apt-get -y install nginx ansible git",
 
       "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"
     ],
