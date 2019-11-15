@@ -3,14 +3,9 @@
     "ARM_CLIENT_ID": "{{env `ARM_CLIENT_ID`}}",
     "ARM_CLIENT_SECRET": "{{env `ARM_CLIENT_SECRET`}}",
     "ARM_TENANT_ID": "{{env `ARM_TENANT_ID`}}",
-    "ARM_SUBSCRIPTION_ID": "{{env `ARM_SUBSCRIPTION_ID`}}"
+    "ARM_SUBSCRIPTION_ID": "{{env `ARM_SUBSCRIPTION_ID`}}",
+    "URL_GIT": "{{env `URL_GIT`}}"
   },
-
-  {
-  "type": "file",
-  "source": "/Users/mareak/mareak-fitec-P1",
-  "destination": "/tmp/"
- },
 
   "builders": [{
     "type": "azure-arm",
@@ -33,15 +28,14 @@
         "task": "Image deployment"
     },
     "location": "East US",
-    "vm_size": "Standard_DS1_v2"
+    "vm_size": "Standard_DS2_v2"
   }],
   "provisioners": [{
     "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
     "inline": [
       "apt-get update",
-      "apt-get upgrade -y",
-	  "apt-get -y install nginx ansible git",
-
+	  "apt-get -y install nginx git ansible",
+      "git clone",
       "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"
     ],
     "inline_shebang": "/bin/sh -x",
