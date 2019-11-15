@@ -1,0 +1,7 @@
+---
+
+- name: Update repositories cache and install "dnsmasq" package
+  apt:
+    name: dnsmasq
+    state: present
+    update_cache: yes
