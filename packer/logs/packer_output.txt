@@ -1,0 +1,6 @@
+[1;32mazure-arm output will be in this color.[0m
+
+2 error(s) occurred:
+
+* playbook_file: ./playbook.yml is invalid: stat ./playbook.yml: no such file or directory
+* Error running "ansible-playbook --version": exec: "ansible-playbook": executable file not found in $PATH
