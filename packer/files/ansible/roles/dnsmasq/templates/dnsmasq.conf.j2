@@ -1,0 +1,10 @@
+# /etc/dnsmasq.conf
+domain-needed
+bogus-priv
+interface=eth1                          
+local=/infra/
+domain=infra
+expand-hosts
+server=1.1.1.1
+no-resolv
+log-facility=/var/log/dnsmasq.log
