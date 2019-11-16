@@ -37,13 +37,26 @@
       "destination": "/tmp"
       },
       {
-        "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
-        "inline": [
-          "apt-get update",
-          "apt-get -y install nginx ansible",
-          "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"
-        ],
-    "inline_shebang": "/bin/sh -x",
-    "type": "shell"
-    }]
+      "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
+      "inline": [
+        "apt-get update",
+        "apt-get -y install nginx ansible",
+        "mkdir /ansible && cp -R /tmp/ansible /ansible",
+        "chmod -R 755 /ansible && chown -R root:root /ansible"
+      ],
+      "inline_shebang": "/bin/sh -x",
+      "type": "shell"
+      },
+      {
+      "type": "ansible",
+      "playbook_file": "/ansible/"
+      },
+      {
+      "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
+      "inline": [
+        "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"
+      ],
+      "inline_shebang": "/bin/sh -x",
+      "type": "shell"
+     }]
 }

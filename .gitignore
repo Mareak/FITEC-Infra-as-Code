@@ -1,5 +1,6 @@
 .gitignore
 export.sh
+*/packer_output.txt
 
 */.terraform/*
 
