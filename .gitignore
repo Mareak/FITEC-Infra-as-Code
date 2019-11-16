@@ -1,6 +1,8 @@
 .gitignore
 export.sh
-*/packer_output.txt
+
+packer/logs/packer_output.txt
+packer/files/ansible/playbook.retry
 
 */.terraform/*
 

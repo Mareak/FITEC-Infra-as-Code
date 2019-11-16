@@ -40,7 +40,8 @@
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
       "inline": [
         "apt-get update",
-        "apt-get -y install nginx ansible",
+        "apt-get upgrade -y",
+        "apt-get -y install nginx python3 python3-apt ansible",
         "mkdir /ansible && cp -R /tmp/ansible /ansible",
         "chmod -R 755 /ansible && chown -R root:root /ansible"
       ],
@@ -48,8 +49,11 @@
       "type": "shell"
       },
       {
-      "type": "ansible",
-      "playbook_file": "/ansible/"
+      "type": "ansible-local",
+      "playbook_file": "packer/files/ansible/playbook.yml",
+	  "role_paths": [
+            "packer/files/ansible/roles/dnsmasq"
+      ]
       },
       {
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
