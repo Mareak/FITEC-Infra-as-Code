@@ -43,6 +43,13 @@
       "type": "shell"
       },
       {
+      "type": "ansible-local",
+      "playbook_file": "packer/files/ansible/playbookS1S2.yml",
+      "role_paths": [
+            "packer/files/ansible/roles/wordpress"
+      ]
+      },
+      {
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
       "inline": [
         "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"

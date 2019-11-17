@@ -1,9 +1,479 @@
 [1;32mazure-arm output will be in this color.[0m
 
 [1;32m==> azure-arm: Running builder ...[0m
-[1;31mBuild 'azure-arm' errored: error fetching subscriptionID from VM metadata service for Managed Identity authentication: Get http://169.254.169.254/metadata/instance/compute?api-version=2017-08-01&format=json: read tcp 127.0.0.1:61405->169.254.169.254:80: read: connection reset by peer[0m
-
-==> Some builds didn't complete successfully and had errors:
---> azure-arm: error fetching subscriptionID from VM metadata service for Managed Identity authentication: Get http://169.254.169.254/metadata/instance/compute?api-version=2017-08-01&format=json: read tcp 127.0.0.1:61405->169.254.169.254:80: read: connection reset by peer
-
-==> Builds finished but no artifacts were created.
+[1;32m==> azure-arm: Getting tokens using client secret[0m
+[1;32m==> azure-arm: Getting tokens using client secret[0m
+[0;32m    azure-arm: Creating Azure Resource Manager (ARM) client ...[0m
+[1;32m==> azure-arm: WARNING: Zone resiliency may not be supported in East US, checkout the docs at https://docs.microsoft.com/en-us/azure/availability-zones/[0m
+[1;32m==> azure-arm: Creating resource group ...[0m
+[1;32m==> azure-arm:  -> ResourceGroupName : 'packer-Resource-Group-3a10wo9rp8'[0m
+[1;32m==> azure-arm:  -> Location          : 'East US'[0m
+[1;32m==> azure-arm:  -> Tags              :[0m
+[1;32m==> azure-arm:  ->> task : Image deployment[0m
+[1;32m==> azure-arm:  ->> dept : Engineering[0m
+[1;32m==> azure-arm: Validating deployment template ...[0m
+[1;32m==> azure-arm:  -> ResourceGroupName : 'packer-Resource-Group-3a10wo9rp8'[0m
+[1;32m==> azure-arm:  -> DeploymentName    : 'pkrdp3a10wo9rp8'[0m
+[1;32m==> azure-arm: Deploying deployment template ...[0m
+[1;32m==> azure-arm:  -> ResourceGroupName : 'packer-Resource-Group-3a10wo9rp8'[0m
+[1;32m==> azure-arm:  -> DeploymentName    : 'pkrdp3a10wo9rp8'[0m
+[1;32m==> azure-arm: Getting the VM's IP address ...[0m
+[1;32m==> azure-arm:  -> ResourceGroupName   : 'packer-Resource-Group-3a10wo9rp8'[0m
+[1;32m==> azure-arm:  -> PublicIPAddressName : 'pkrip3a10wo9rp8'[0m
+[1;32m==> azure-arm:  -> NicName             : 'pkrni3a10wo9rp8'[0m
+[1;32m==> azure-arm:  -> Network Connection  : 'PublicEndpoint'[0m
+[1;32m==> azure-arm:  -> IP Address          : '168.61.33.43'[0m
+[1;32m==> azure-arm: Waiting for SSH to become available...[0m
+[1;32m==> azure-arm: Connected to SSH![0m
+[1;32m==> azure-arm: Provisioning with shell script: /var/folders/8m/461tf7_51773gsxy14c7nj580000gn/T/packer-shell468647938[0m
+[0;32m    azure-arm: Hit:1 http://deb.debian.org/debian buster-backports InRelease[0m
+[0;32m    azure-arm: Hit:2 http://debian-archive.trafficmanager.net/debian buster InRelease[0m
+[0;32m    azure-arm: Hit:3 http://debian-archive.trafficmanager.net/debian-security buster/updates InRelease[0m
+[0;32m    azure-arm: Hit:4 http://debian-archive.trafficmanager.net/debian buster-updates InRelease[0m
+[0;32m    azure-arm: Reading package lists...[0m
+[0;32m    azure-arm: Reading package lists...[0m
+[0;32m    azure-arm: Building dependency tree...[0m
+[0;32m    azure-arm: Reading state information...[0m
+[0;32m    azure-arm: Calculating upgrade...[0m
+[0;32m    azure-arm: The following packages will be upgraded:[0m
+[0;32m    azure-arm:   base-files cron distro-info-data libfreetype6 libglib2.0-0 libncurses6[0m
+[0;32m    azure-arm:   libncursesw6 libpam-systemd libpython2.7-minimal libpython2.7-stdlib[0m
+[0;32m    azure-arm:   libsystemd0 libtinfo6 libudev1 ncurses-base ncurses-bin python2.7[0m
+[0;32m    azure-arm:   python2.7-minimal systemd systemd-sysv udev[0m
+[0;32m    azure-arm: 20 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.[0m
+[0;32m    azure-arm: Need to get 12.6 MB of archives.[0m
+[0;32m    azure-arm: After this operation, 6144 B of additional disk space will be used.[0m
+[0;32m    azure-arm: Get:1 http://debian-archive.trafficmanager.net/debian buster/main amd64 base-files amd64 10.3+deb10u2 [69.7 kB][0m
+[0;32m    azure-arm: Get:2 http://debian-archive.trafficmanager.net/debian buster/main amd64 ncurses-bin amd64 6.1+20181013-2+deb10u2 [406 kB][0m
+[0;32m    azure-arm: Get:3 http://debian-archive.trafficmanager.net/debian buster/main amd64 ncurses-base all 6.1+20181013-2+deb10u2 [258 kB][0m
+[0;32m    azure-arm: Get:4 http://debian-archive.trafficmanager.net/debian buster/main amd64 systemd-sysv amd64 241-7~deb10u2 [99.3 kB][0m
+[0;32m    azure-arm: Get:5 http://debian-archive.trafficmanager.net/debian buster/main amd64 libpam-systemd amd64 241-7~deb10u2 [208 kB][0m
+[0;32m    azure-arm: Get:6 http://debian-archive.trafficmanager.net/debian buster/main amd64 libsystemd0 amd64 241-7~deb10u2 [331 kB][0m
+[0;32m    azure-arm: Get:7 http://debian-archive.trafficmanager.net/debian buster/main amd64 systemd amd64 241-7~deb10u2 [3497 kB][0m
+[0;32m    azure-arm: Get:8 http://debian-archive.trafficmanager.net/debian buster/main amd64 udev amd64 241-7~deb10u2 [1276 kB][0m
+[0;32m    azure-arm: Get:9 http://debian-archive.trafficmanager.net/debian buster/main amd64 libudev1 amd64 241-7~deb10u2 [150 kB][0m
+[0;32m    azure-arm: Get:10 http://debian-archive.trafficmanager.net/debian buster/main amd64 cron amd64 3.0pl1-134+deb10u1 [99.0 kB][0m
+[0;32m    azure-arm: Get:11 http://debian-archive.trafficmanager.net/debian buster/main amd64 python2.7 amd64 2.7.16-2+deb10u1 [305 kB][0m
+[0;32m    azure-arm: Get:12 http://debian-archive.trafficmanager.net/debian buster/main amd64 python2.7-minimal amd64 2.7.16-2+deb10u1 [1369 kB][0m
+[0;32m    azure-arm: Get:13 http://debian-archive.trafficmanager.net/debian buster/main amd64 libpython2.7-stdlib amd64 2.7.16-2+deb10u1 [1912 kB][0m
+[0;32m    azure-arm: Get:14 http://debian-archive.trafficmanager.net/debian buster/main amd64 libpython2.7-minimal amd64 2.7.16-2+deb10u1 [395 kB][0m
+[0;32m    azure-arm: Get:15 http://debian-archive.trafficmanager.net/debian buster/main amd64 libncurses6 amd64 6.1+20181013-2+deb10u2 [102 kB][0m
+[0;32m    azure-arm: Get:16 http://debian-archive.trafficmanager.net/debian buster/main amd64 libtinfo6 amd64 6.1+20181013-2+deb10u2 [325 kB][0m
+[0;32m    azure-arm: Get:17 http://debian-archive.trafficmanager.net/debian buster/main amd64 libncursesw6 amd64 6.1+20181013-2+deb10u2 [132 kB][0m
+[0;32m    azure-arm: Get:18 http://debian-archive.trafficmanager.net/debian buster/main amd64 distro-info-data all 0.41+deb10u1 [6500 B][0m
+[0;32m    azure-arm: Get:19 http://debian-archive.trafficmanager.net/debian buster/main amd64 libfreetype6 amd64 2.9.1-3+deb10u1 [380 kB][0m
+[0;32m    azure-arm: Get:20 http://debian-archive.trafficmanager.net/debian buster/main amd64 libglib2.0-0 amd64 2.58.3-2+deb10u2 [1258 kB][0m
+[0;32m    azure-arm: apt-listchanges: Reading changelogs...[0m
+[1;31m==> azure-arm: debconf: unable to initialize frontend: Dialog[0m
+[1;31m==> azure-arm: debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)[0m
+[1;31m==> azure-arm: debconf: falling back to frontend: Readline[0m
+[1;31m==> azure-arm: debconf: unable to initialize frontend: Readline[0m
+[0;32m    azure-arm: Fetched 12.6 MB in 0s (88.6 MB/s)[0m
+[1;31m==> azure-arm: debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.28.1 /usr/local/share/perl/5.28.1 /usr/lib/x86_64-linux-gnu/perl5/5.28 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.28 /usr/share/perl/5.28 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7, <> line 20.)[0m
+[1;31m==> azure-arm: debconf: falling back to frontend: Teletype[0m
+[1;31m==> azure-arm: dpkg-preconfigure: unable to re-open stdin:[0m
+[0;32m    azure-arm: (Reading database ... 19402 files and directories currently installed.)[0m
+[0;32m    azure-arm: Preparing to unpack .../base-files_10.3+deb10u2_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking base-files (10.3+deb10u2) over (10.3+deb10u1) ...[0m
+[0;32m    azure-arm: Setting up base-files (10.3+deb10u2) ...[0m
+[0;32m    azure-arm: Installing new version of config file /etc/debian_version ...[0m
+[0;32m    azure-arm: (Reading database ... 19402 files and directories currently installed.)[0m
+[0;32m    azure-arm: Preparing to unpack .../ncurses-bin_6.1+20181013-2+deb10u2_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking ncurses-bin (6.1+20181013-2+deb10u2) over (6.1+20181013-2+deb10u1) ...[0m
+[0;32m    azure-arm: Setting up ncurses-bin (6.1+20181013-2+deb10u2) ...[0m
+[0;32m    azure-arm: (Reading database ... 19402 files and directories currently installed.)[0m
+[0;32m    azure-arm: Preparing to unpack .../ncurses-base_6.1+20181013-2+deb10u2_all.deb ...[0m
+[0;32m    azure-arm: Unpacking ncurses-base (6.1+20181013-2+deb10u2) over (6.1+20181013-2+deb10u1) ...[0m
+[0;32m    azure-arm: Setting up ncurses-base (6.1+20181013-2+deb10u2) ...[0m
+[0;32m    azure-arm: (Reading database ... 19402 files and directories currently installed.)[0m
+[0;32m    azure-arm: Preparing to unpack .../systemd-sysv_241-7~deb10u2_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking systemd-sysv (241-7~deb10u2) over (241-7~deb10u1) ...[0m
+[0;32m    azure-arm: Preparing to unpack .../libpam-systemd_241-7~deb10u2_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libpam-systemd:amd64 (241-7~deb10u2) over (241-7~deb10u1) ...[0m
+[0;32m    azure-arm: Preparing to unpack .../libsystemd0_241-7~deb10u2_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libsystemd0:amd64 (241-7~deb10u2) over (241-7~deb10u1) ...[0m
+[0;32m    azure-arm: Setting up libsystemd0:amd64 (241-7~deb10u2) ...[0m
+[0;32m    azure-arm: (Reading database ... 19402 files and directories currently installed.)[0m
+[0;32m    azure-arm: Preparing to unpack .../systemd_241-7~deb10u2_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking systemd (241-7~deb10u2) over (241-7~deb10u1) ...[0m
+[0;32m    azure-arm: Preparing to unpack .../udev_241-7~deb10u2_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking udev (241-7~deb10u2) over (241-7~deb10u1) ...[0m
+[0;32m    azure-arm: Preparing to unpack .../libudev1_241-7~deb10u2_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libudev1:amd64 (241-7~deb10u2) over (241-7~deb10u1) ...[0m
+[0;32m    azure-arm: Setting up libudev1:amd64 (241-7~deb10u2) ...[0m
+[0;32m    azure-arm: (Reading database ... 19402 files and directories currently installed.)[0m
+[0;32m    azure-arm: Preparing to unpack .../0-cron_3.0pl1-134+deb10u1_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking cron (3.0pl1-134+deb10u1) over (3.0pl1-134) ...[0m
+[0;32m    azure-arm: Preparing to unpack .../1-python2.7_2.7.16-2+deb10u1_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking python2.7 (2.7.16-2+deb10u1) over (2.7.16-2) ...[0m
+[0;32m    azure-arm: Preparing to unpack .../2-python2.7-minimal_2.7.16-2+deb10u1_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking python2.7-minimal (2.7.16-2+deb10u1) over (2.7.16-2) ...[0m
+[0;32m    azure-arm: Preparing to unpack .../3-libpython2.7-stdlib_2.7.16-2+deb10u1_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libpython2.7-stdlib:amd64 (2.7.16-2+deb10u1) over (2.7.16-2) ...[0m
+[0;32m    azure-arm: Preparing to unpack .../4-libpython2.7-minimal_2.7.16-2+deb10u1_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libpython2.7-minimal:amd64 (2.7.16-2+deb10u1) over (2.7.16-2) ...[0m
+[0;32m    azure-arm: Preparing to unpack .../5-libncurses6_6.1+20181013-2+deb10u2_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libncurses6:amd64 (6.1+20181013-2+deb10u2) over (6.1+20181013-2+deb10u1) ...[0m
+[0;32m    azure-arm: Preparing to unpack .../6-libtinfo6_6.1+20181013-2+deb10u2_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libtinfo6:amd64 (6.1+20181013-2+deb10u2) over (6.1+20181013-2+deb10u1) ...[0m
+[0;32m    azure-arm: Setting up libtinfo6:amd64 (6.1+20181013-2+deb10u2) ...[0m
+[0;32m    azure-arm: (Reading database ... 19402 files and directories currently installed.)[0m
+[0;32m    azure-arm: Preparing to unpack .../libncursesw6_6.1+20181013-2+deb10u2_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libncursesw6:amd64 (6.1+20181013-2+deb10u2) over (6.1+20181013-2+deb10u1) ...[0m
+[0;32m    azure-arm: Setting up libncursesw6:amd64 (6.1+20181013-2+deb10u2) ...[0m
+[0;32m    azure-arm: (Reading database ... 19402 files and directories currently installed.)[0m
+[0;32m    azure-arm: Preparing to unpack .../distro-info-data_0.41+deb10u1_all.deb ...[0m
+[0;32m    azure-arm: Unpacking distro-info-data (0.41+deb10u1) over (0.41) ...[0m
+[0;32m    azure-arm: Preparing to unpack .../libfreetype6_2.9.1-3+deb10u1_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libfreetype6:amd64 (2.9.1-3+deb10u1) over (2.9.1-3) ...[0m
+[0;32m    azure-arm: Preparing to unpack .../libglib2.0-0_2.58.3-2+deb10u2_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libglib2.0-0:amd64 (2.58.3-2+deb10u2) over (2.58.3-2+deb10u1) ...[0m
+[0;32m    azure-arm: Setting up libglib2.0-0:amd64 (2.58.3-2+deb10u2) ...[0m
+[0;32m    azure-arm: No schema files found: doing nothing.[0m
+[0;32m    azure-arm: Setting up distro-info-data (0.41+deb10u1) ...[0m
+[0;32m    azure-arm: Setting up cron (3.0pl1-134+deb10u1) ...[0m
+[0;32m    azure-arm: Setting up systemd (241-7~deb10u2) ...[0m
+[0;32m    azure-arm: Setting up libpython2.7-minimal:amd64 (2.7.16-2+deb10u1) ...[0m
+[0;32m    azure-arm: Setting up libfreetype6:amd64 (2.9.1-3+deb10u1) ...[0m
+[0;32m    azure-arm: Setting up python2.7-minimal (2.7.16-2+deb10u1) ...[0m
+[0;32m    azure-arm: Setting up libncurses6:amd64 (6.1+20181013-2+deb10u2) ...[0m
+[0;32m    azure-arm: Setting up udev (241-7~deb10u2) ...[0m
+[0;32m    azure-arm: update-initramfs: deferring update (trigger activated)[0m
+[0;32m    azure-arm: Setting up systemd-sysv (241-7~deb10u2) ...[0m
+[0;32m    azure-arm: Setting up libpython2.7-stdlib:amd64 (2.7.16-2+deb10u1) ...[0m
+[0;32m    azure-arm: Setting up libpam-systemd:amd64 (241-7~deb10u2) ...[0m
+[0;32m    azure-arm: debconf: unable to initialize frontend: Dialog[0m
+[0;32m    azure-arm: debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)[0m
+[0;32m    azure-arm: debconf: falling back to frontend: Readline[0m
+[0;32m    azure-arm: debconf: unable to initialize frontend: Readline[0m
+[0;32m    azure-arm: debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.28.1 /usr/local/share/perl/5.28.1 /usr/lib/x86_64-linux-gnu/perl5/5.28 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.28 /usr/share/perl/5.28 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)[0m
+[0;32m    azure-arm: debconf: falling back to frontend: Teletype[0m
+[0;32m    azure-arm: Setting up python2.7 (2.7.16-2+deb10u1) ...[0m
+[0;32m    azure-arm: Processing triggers for man-db (2.8.5-2) ...[0m
+[0;32m    azure-arm: Processing triggers for dbus (1.12.16-1) ...[0m
+[0;32m    azure-arm: Processing triggers for mime-support (3.62) ...[0m
+[0;32m    azure-arm: Processing triggers for libc-bin (2.28-10) ...[0m
+[0;32m    azure-arm: Processing triggers for initramfs-tools (0.133+deb10u1) ...[0m
+[0;32m    azure-arm: update-initramfs: Generating /boot/initrd.img-4.19.0-6-cloud-amd64[0m
+[0;32m    azure-arm: Reading package lists...[0m
+[0;32m    azure-arm: Building dependency tree...[0m
+[0;32m    azure-arm: Reading state information...[0m
+[0;32m    azure-arm: python3-apt is already the newest version (1.8.4).[0m
+[0;32m    azure-arm: python3-apt set to manually installed.[0m
+[0;32m    azure-arm: python3 is already the newest version (3.7.3-1).[0m
+[0;32m    azure-arm: python3 set to manually installed.[0m
+[0;32m    azure-arm: The following additional packages will be installed:[0m
+[0;32m    azure-arm:   apache2-bin apache2-data apache2-utils ieee-data libapr1 libaprutil1[0m
+[0;32m    azure-arm:   libaprutil1-dbd-sqlite3 libaprutil1-ldap libbrotli1 libgdbm-compat4[0m
+[0;32m    azure-arm:   libjansson4 liblua5.2-0 libperl5.28 libsodium23 libyaml-0-2 perl[0m
+[0;32m    azure-arm:   perl-modules-5.28 python3-asn1crypto python3-bcrypt python3-cffi-backend[0m
+[0;32m    azure-arm:   python3-crypto python3-cryptography python3-jinja2 python3-jmespath[0m
+[0;32m    azure-arm:   python3-kerberos python3-libcloud python3-lockfile python3-markupsafe[0m
+[0;32m    azure-arm:   python3-nacl python3-netaddr python3-ntlm-auth python3-paramiko[0m
+[0;32m    azure-arm:   python3-pyasn1 python3-requests-kerberos python3-requests-ntlm[0m
+[0;32m    azure-arm:   python3-selinux python3-simplejson python3-winrm python3-xmltodict[0m
+[0;32m    azure-arm:   python3-yaml ssl-cert[0m
+[0;32m    azure-arm: Suggested packages:[0m
+[0;32m    azure-arm:   cowsay sshpass apache2-doc apache2-suexec-pristine | apache2-suexec-custom[0m
+[0;32m    azure-arm:   www-browser perl-doc libterm-readline-gnu-perl | libterm-readline-perl-perl[0m
+[0;32m    azure-arm:   make libb-debug-perl liblocale-codes-perl python-crypto-doc[0m
+[0;32m    azure-arm:   python-cryptography-doc python3-cryptography-vectors python-jinja2-doc[0m
+[0;32m    azure-arm:   python-lockfile-doc python-nacl-doc ipython3 python-netaddr-docs[0m
+[0;32m    azure-arm:   python3-gssapi openssl-blacklist[0m
+[0;32m    azure-arm: The following NEW packages will be installed:[0m
+[0;32m    azure-arm:   ansible apache2 apache2-bin apache2-data apache2-utils ieee-data libapr1[0m
+[0;32m    azure-arm:   libaprutil1 libaprutil1-dbd-sqlite3 libaprutil1-ldap libbrotli1[0m
+[0;32m    azure-arm:   libgdbm-compat4 libjansson4 liblua5.2-0 libperl5.28 libsodium23 libyaml-0-2[0m
+[0;32m    azure-arm:   perl perl-modules-5.28 python3-asn1crypto python3-bcrypt[0m
+[0;32m    azure-arm:   python3-cffi-backend python3-crypto python3-cryptography python3-jinja2[0m
+[0;32m    azure-arm:   python3-jmespath python3-kerberos python3-libcloud python3-lockfile[0m
+[0;32m    azure-arm:   python3-markupsafe python3-nacl python3-netaddr python3-ntlm-auth[0m
+[0;32m    azure-arm:   python3-paramiko python3-pyasn1 python3-requests-kerberos[0m
+[0;32m    azure-arm:   python3-requests-ntlm python3-selinux python3-simplejson python3-winrm[0m
+[0;32m    azure-arm:   python3-xmltodict python3-yaml ssl-cert[0m
+[0;32m    azure-arm: 0 upgraded, 43 newly installed, 0 to remove and 0 not upgraded.[0m
+[0;32m    azure-arm: Need to get 18.4 MB of archives.[0m
+[0;32m    azure-arm: After this operation, 126 MB of additional disk space will be used.[0m
+[0;32m    azure-arm: Get:1 http://debian-archive.trafficmanager.net/debian buster/main amd64 perl-modules-5.28 all 5.28.1-6 [2873 kB][0m
+[0;32m    azure-arm: Get:2 http://debian-archive.trafficmanager.net/debian buster/main amd64 libgdbm-compat4 amd64 1.18.1-4 [44.1 kB][0m
+[0;32m    azure-arm: Get:3 http://debian-archive.trafficmanager.net/debian buster/main amd64 libperl5.28 amd64 5.28.1-6 [3883 kB][0m
+[0;32m    azure-arm: Get:4 http://debian-archive.trafficmanager.net/debian buster/main amd64 perl amd64 5.28.1-6 [204 kB][0m
+[0;32m    azure-arm: Get:5 http://debian-archive.trafficmanager.net/debian buster/main amd64 libapr1 amd64 1.6.5-1+b1 [102 kB][0m
+[0;32m    azure-arm: Get:6 http://debian-archive.trafficmanager.net/debian buster/main amd64 libaprutil1 amd64 1.6.1-4 [91.8 kB][0m
+[0;32m    azure-arm: Get:7 http://debian-archive.trafficmanager.net/debian buster/main amd64 libaprutil1-dbd-sqlite3 amd64 1.6.1-4 [18.7 kB][0m
+[0;32m    azure-arm: Get:8 http://debian-archive.trafficmanager.net/debian buster/main amd64 libaprutil1-ldap amd64 1.6.1-4 [16.8 kB][0m
+[0;32m    azure-arm: Get:9 http://debian-archive.trafficmanager.net/debian buster/main amd64 libbrotli1 amd64 1.0.7-2 [270 kB][0m
+[0;32m    azure-arm: Get:10 http://debian-archive.trafficmanager.net/debian buster/main amd64 libjansson4 amd64 2.12-1 [38.0 kB][0m
+[0;32m    azure-arm: Get:11 http://debian-archive.trafficmanager.net/debian buster/main amd64 liblua5.2-0 amd64 5.2.4-1.1+b2 [110 kB][0m
+[0;32m    azure-arm: Get:12 http://debian-archive.trafficmanager.net/debian buster/main amd64 apache2-bin amd64 2.4.38-3+deb10u3 [1307 kB][0m
+[0;32m    azure-arm: Get:13 http://debian-archive.trafficmanager.net/debian buster/main amd64 apache2-data all 2.4.38-3+deb10u3 [165 kB][0m
+[0;32m    azure-arm: Get:14 http://debian-archive.trafficmanager.net/debian buster/main amd64 apache2-utils amd64 2.4.38-3+deb10u3 [236 kB][0m
+[0;32m    azure-arm: Get:15 http://debian-archive.trafficmanager.net/debian buster/main amd64 apache2 amd64 2.4.38-3+deb10u3 [251 kB][0m
+[0;32m    azure-arm: Get:16 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-asn1crypto all 0.24.0-1 [78.2 kB][0m
+[0;32m    azure-arm: Get:17 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-cffi-backend amd64 1.12.2-1 [79.7 kB][0m
+[0;32m    azure-arm: Get:18 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-cryptography amd64 2.6.1-3+deb10u2 [219 kB][0m
+[0;32m    azure-arm: Get:19 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-markupsafe amd64 1.1.0-1 [14.8 kB][0m
+[0;32m    azure-arm: Get:20 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-jinja2 all 2.10-2 [106 kB][0m
+[0;32m    azure-arm: Get:21 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-bcrypt amd64 3.1.6-1 [31.7 kB][0m
+[0;32m    azure-arm: Get:22 http://debian-archive.trafficmanager.net/debian buster/main amd64 libsodium23 amd64 1.0.17-1 [158 kB][0m
+[0;32m    azure-arm: Get:23 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-nacl amd64 1.3.0-2 [49.5 kB][0m
+[0;32m    azure-arm: Get:24 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-pyasn1 all 0.4.2-3 [57.7 kB][0m
+[0;32m    azure-arm: Get:25 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-paramiko all 2.4.2-0.1 [120 kB][0m
+[0;32m    azure-arm: Get:26 http://debian-archive.trafficmanager.net/debian buster/main amd64 libyaml-0-2 amd64 0.2.1-1 [47.2 kB][0m
+[0;32m    azure-arm: Get:27 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-yaml amd64 3.13-2 [121 kB][0m
+[0;32m    azure-arm: Get:28 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-crypto amd64 2.6.1-9+b1 [263 kB][0m
+[0;32m    azure-arm: Get:29 http://debian-archive.trafficmanager.net/debian buster/main amd64 ieee-data all 20180805.1 [1590 kB][0m
+[0;32m    azure-arm: Get:30 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-netaddr all 0.7.19-1 [228 kB][0m
+[0;32m    azure-arm: Get:31 http://debian-archive.trafficmanager.net/debian buster/main amd64 ansible all 2.7.7+dfsg-1 [3958 kB][0m
+[0;32m    azure-arm: Get:32 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-jmespath all 0.9.4-1 [18.5 kB][0m
+[0;32m    azure-arm: Get:33 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-kerberos amd64 1.1.14-2 [18.0 kB][0m
+[0;32m    azure-arm: Get:34 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-lockfile all 1:0.12.2-2 [17.1 kB][0m
+[0;32m    azure-arm: Get:35 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-simplejson amd64 3.16.0-1 [60.7 kB][0m
+[0;32m    azure-arm: Get:36 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-libcloud all 2.4.0-1 [1315 kB][0m
+[0;32m    azure-arm: Get:37 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-ntlm-auth all 1.1.0-1 [20.5 kB][0m
+[0;32m    azure-arm: Get:38 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-requests-kerberos all 0.11.0-2 [11.2 kB][0m
+[0;32m    azure-arm: Get:39 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-requests-ntlm all 1.1.0-1 [5976 B][0m
+[0;32m    azure-arm: Get:40 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-selinux amd64 2.8-1+b1 [160 kB][0m
+[0;32m    azure-arm: Get:41 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-xmltodict all 0.11.0-2 [12.9 kB][0m
+[0;32m    azure-arm: Get:42 http://debian-archive.trafficmanager.net/debian buster/main amd64 python3-winrm all 0.3.0-2 [21.6 kB][0m
+[0;32m    azure-arm: Get:43 http://debian-archive.trafficmanager.net/debian buster/main amd64 ssl-cert all 1.0.39 [20.8 kB][0m
+[1;31m==> azure-arm: debconf: unable to initialize frontend: Dialog[0m
+[1;31m==> azure-arm: debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)[0m
+[1;31m==> azure-arm: debconf: falling back to frontend: Readline[0m
+[1;31m==> azure-arm: debconf: unable to initialize frontend: Readline[0m
+[1;31m==> azure-arm: debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.28.1 /usr/local/share/perl/5.28.1 /usr/lib/x86_64-linux-gnu/perl5/5.28 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.28 /usr/share/perl/5.28 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7, <> line 43.)[0m
+[1;31m==> azure-arm: debconf: falling back to frontend: Teletype[0m
+[0;32m    azure-arm: Fetched 18.4 MB in 1s (25.0 MB/s)[0m
+[1;31m==> azure-arm: dpkg-preconfigure: unable to re-open stdin:[0m
+[0;32m    azure-arm: Selecting previously unselected package perl-modules-5.28.[0m
+[0;32m    azure-arm: (Reading database ... 19402 files and directories currently installed.)[0m
+[0;32m    azure-arm: Preparing to unpack .../00-perl-modules-5.28_5.28.1-6_all.deb ...[0m
+[0;32m    azure-arm: Unpacking perl-modules-5.28 (5.28.1-6) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package libgdbm-compat4:amd64.[0m
+[0;32m    azure-arm: Preparing to unpack .../01-libgdbm-compat4_1.18.1-4_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libgdbm-compat4:amd64 (1.18.1-4) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package libperl5.28:amd64.[0m
+[0;32m    azure-arm: Preparing to unpack .../02-libperl5.28_5.28.1-6_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libperl5.28:amd64 (5.28.1-6) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package perl.[0m
+[0;32m    azure-arm: Preparing to unpack .../03-perl_5.28.1-6_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking perl (5.28.1-6) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package libapr1:amd64.[0m
+[0;32m    azure-arm: Preparing to unpack .../04-libapr1_1.6.5-1+b1_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libapr1:amd64 (1.6.5-1+b1) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package libaprutil1:amd64.[0m
+[0;32m    azure-arm: Preparing to unpack .../05-libaprutil1_1.6.1-4_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libaprutil1:amd64 (1.6.1-4) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package libaprutil1-dbd-sqlite3:amd64.[0m
+[0;32m    azure-arm: Preparing to unpack .../06-libaprutil1-dbd-sqlite3_1.6.1-4_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libaprutil1-dbd-sqlite3:amd64 (1.6.1-4) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package libaprutil1-ldap:amd64.[0m
+[0;32m    azure-arm: Preparing to unpack .../07-libaprutil1-ldap_1.6.1-4_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libaprutil1-ldap:amd64 (1.6.1-4) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package libbrotli1:amd64.[0m
+[0;32m    azure-arm: Preparing to unpack .../08-libbrotli1_1.0.7-2_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libbrotli1:amd64 (1.0.7-2) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package libjansson4:amd64.[0m
+[0;32m    azure-arm: Preparing to unpack .../09-libjansson4_2.12-1_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libjansson4:amd64 (2.12-1) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package liblua5.2-0:amd64.[0m
+[0;32m    azure-arm: Preparing to unpack .../10-liblua5.2-0_5.2.4-1.1+b2_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking liblua5.2-0:amd64 (5.2.4-1.1+b2) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package apache2-bin.[0m
+[0;32m    azure-arm: Preparing to unpack .../11-apache2-bin_2.4.38-3+deb10u3_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking apache2-bin (2.4.38-3+deb10u3) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package apache2-data.[0m
+[0;32m    azure-arm: Preparing to unpack .../12-apache2-data_2.4.38-3+deb10u3_all.deb ...[0m
+[0;32m    azure-arm: Unpacking apache2-data (2.4.38-3+deb10u3) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package apache2-utils.[0m
+[0;32m    azure-arm: Preparing to unpack .../13-apache2-utils_2.4.38-3+deb10u3_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking apache2-utils (2.4.38-3+deb10u3) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package apache2.[0m
+[0;32m    azure-arm: Preparing to unpack .../14-apache2_2.4.38-3+deb10u3_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking apache2 (2.4.38-3+deb10u3) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-asn1crypto.[0m
+[0;32m    azure-arm: Preparing to unpack .../15-python3-asn1crypto_0.24.0-1_all.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-asn1crypto (0.24.0-1) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-cffi-backend.[0m
+[0;32m    azure-arm: Preparing to unpack .../16-python3-cffi-backend_1.12.2-1_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-cffi-backend (1.12.2-1) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-cryptography.[0m
+[0;32m    azure-arm: Preparing to unpack .../17-python3-cryptography_2.6.1-3+deb10u2_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-cryptography (2.6.1-3+deb10u2) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-markupsafe.[0m
+[0;32m    azure-arm: Preparing to unpack .../18-python3-markupsafe_1.1.0-1_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-markupsafe (1.1.0-1) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-jinja2.[0m
+[0;32m    azure-arm: Preparing to unpack .../19-python3-jinja2_2.10-2_all.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-jinja2 (2.10-2) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-bcrypt.[0m
+[0;32m    azure-arm: Preparing to unpack .../20-python3-bcrypt_3.1.6-1_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-bcrypt (3.1.6-1) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package libsodium23:amd64.[0m
+[0;32m    azure-arm: Preparing to unpack .../21-libsodium23_1.0.17-1_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libsodium23:amd64 (1.0.17-1) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-nacl.[0m
+[0;32m    azure-arm: Preparing to unpack .../22-python3-nacl_1.3.0-2_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-nacl (1.3.0-2) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-pyasn1.[0m
+[0;32m    azure-arm: Preparing to unpack .../23-python3-pyasn1_0.4.2-3_all.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-pyasn1 (0.4.2-3) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-paramiko.[0m
+[0;32m    azure-arm: Preparing to unpack .../24-python3-paramiko_2.4.2-0.1_all.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-paramiko (2.4.2-0.1) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package libyaml-0-2:amd64.[0m
+[0;32m    azure-arm: Preparing to unpack .../25-libyaml-0-2_0.2.1-1_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking libyaml-0-2:amd64 (0.2.1-1) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-yaml.[0m
+[0;32m    azure-arm: Preparing to unpack .../26-python3-yaml_3.13-2_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-yaml (3.13-2) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-crypto.[0m
+[0;32m    azure-arm: Preparing to unpack .../27-python3-crypto_2.6.1-9+b1_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-crypto (2.6.1-9+b1) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package ieee-data.[0m
+[0;32m    azure-arm: Preparing to unpack .../28-ieee-data_20180805.1_all.deb ...[0m
+[0;32m    azure-arm: Unpacking ieee-data (20180805.1) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-netaddr.[0m
+[0;32m    azure-arm: Preparing to unpack .../29-python3-netaddr_0.7.19-1_all.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-netaddr (0.7.19-1) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package ansible.[0m
+[0;32m    azure-arm: Preparing to unpack .../30-ansible_2.7.7+dfsg-1_all.deb ...[0m
+[0;32m    azure-arm: Unpacking ansible (2.7.7+dfsg-1) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-jmespath.[0m
+[0;32m    azure-arm: Preparing to unpack .../31-python3-jmespath_0.9.4-1_all.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-jmespath (0.9.4-1) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-kerberos.[0m
+[0;32m    azure-arm: Preparing to unpack .../32-python3-kerberos_1.1.14-2_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-kerberos (1.1.14-2) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-lockfile.[0m
+[0;32m    azure-arm: Preparing to unpack .../33-python3-lockfile_1%3a0.12.2-2_all.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-lockfile (1:0.12.2-2) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-simplejson.[0m
+[0;32m    azure-arm: Preparing to unpack .../34-python3-simplejson_3.16.0-1_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-simplejson (3.16.0-1) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-libcloud.[0m
+[0;32m    azure-arm: Preparing to unpack .../35-python3-libcloud_2.4.0-1_all.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-libcloud (2.4.0-1) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-ntlm-auth.[0m
+[0;32m    azure-arm: Preparing to unpack .../36-python3-ntlm-auth_1.1.0-1_all.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-ntlm-auth (1.1.0-1) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-requests-kerberos.[0m
+[0;32m    azure-arm: Preparing to unpack .../37-python3-requests-kerberos_0.11.0-2_all.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-requests-kerberos (0.11.0-2) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-requests-ntlm.[0m
+[0;32m    azure-arm: Preparing to unpack .../38-python3-requests-ntlm_1.1.0-1_all.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-requests-ntlm (1.1.0-1) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-selinux.[0m
+[0;32m    azure-arm: Preparing to unpack .../39-python3-selinux_2.8-1+b1_amd64.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-selinux (2.8-1+b1) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-xmltodict.[0m
+[0;32m    azure-arm: Preparing to unpack .../40-python3-xmltodict_0.11.0-2_all.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-xmltodict (0.11.0-2) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package python3-winrm.[0m
+[0;32m    azure-arm: Preparing to unpack .../41-python3-winrm_0.3.0-2_all.deb ...[0m
+[0;32m    azure-arm: Unpacking python3-winrm (0.3.0-2) ...[0m
+[0;32m    azure-arm: Selecting previously unselected package ssl-cert.[0m
+[0;32m    azure-arm: Preparing to unpack .../42-ssl-cert_1.0.39_all.deb ...[0m
+[0;32m    azure-arm: Unpacking ssl-cert (1.0.39) ...[0m
+[0;32m    azure-arm: Setting up perl-modules-5.28 (5.28.1-6) ...[0m
+[0;32m    azure-arm: Setting up python3-lockfile (1:0.12.2-2) ...[0m
+[0;32m    azure-arm: Setting up libsodium23:amd64 (1.0.17-1) ...[0m
+[0;32m    azure-arm: Setting up libyaml-0-2:amd64 (0.2.1-1) ...[0m
+[0;32m    azure-arm: Setting up python3-ntlm-auth (1.1.0-1) ...[0m
+[0;32m    azure-arm: Setting up libbrotli1:amd64 (1.0.7-2) ...[0m
+[0;32m    azure-arm: Setting up libapr1:amd64 (1.6.5-1+b1) ...[0m
+[0;32m    azure-arm: Setting up python3-kerberos (1.1.14-2) ...[0m
+[0;32m    azure-arm: Setting up python3-yaml (3.13-2) ...[0m
+[0;32m    azure-arm: Setting up python3-markupsafe (1.1.0-1) ...[0m
+[0;32m    azure-arm: Setting up libjansson4:amd64 (2.12-1) ...[0m
+[0;32m    azure-arm: Setting up python3-simplejson (3.16.0-1) ...[0m
+[0;32m    azure-arm: Setting up python3-xmltodict (0.11.0-2) ...[0m
+[0;32m    azure-arm: Setting up python3-jinja2 (2.10-2) ...[0m
+[0;32m    azure-arm: Setting up ssl-cert (1.0.39) ...[0m
+[0;32m    azure-arm: debconf: unable to initialize frontend: Dialog[0m
+[0;32m    azure-arm: debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)[0m
+[0;32m    azure-arm: debconf: falling back to frontend: Readline[0m
+[0;32m    azure-arm: Setting up python3-jmespath (0.9.4-1) ...[0m
+[0;32m    azure-arm: Setting up libgdbm-compat4:amd64 (1.18.1-4) ...[0m
+[0;32m    azure-arm: Setting up libperl5.28:amd64 (5.28.1-6) ...[0m
+[0;32m    azure-arm: Setting up python3-requests-kerberos (0.11.0-2) ...[0m
+[0;32m    azure-arm: Setting up ieee-data (20180805.1) ...[0m
+[0;32m    azure-arm: Setting up liblua5.2-0:amd64 (5.2.4-1.1+b2) ...[0m
+[0;32m    azure-arm: Setting up python3-pyasn1 (0.4.2-3) ...[0m
+[0;32m    azure-arm: Setting up python3-selinux (2.8-1+b1) ...[0m
+[0;32m    azure-arm: Setting up python3-crypto (2.6.1-9+b1) ...[0m
+[0;32m    azure-arm: Setting up apache2-data (2.4.38-3+deb10u3) ...[0m
+[0;32m    azure-arm: Setting up python3-asn1crypto (0.24.0-1) ...[0m
+[0;32m    azure-arm: Setting up python3-cffi-backend (1.12.2-1) ...[0m
+[0;32m    azure-arm: Setting up libaprutil1:amd64 (1.6.1-4) ...[0m
+[0;32m    azure-arm: Setting up python3-bcrypt (3.1.6-1) ...[0m
+[0;32m    azure-arm: Setting up python3-libcloud (2.4.0-1) ...[0m
+[0;32m    azure-arm: Setting up libaprutil1-ldap:amd64 (1.6.1-4) ...[0m
+[0;32m    azure-arm: Setting up libaprutil1-dbd-sqlite3:amd64 (1.6.1-4) ...[0m
+[0;32m    azure-arm: Setting up perl (5.28.1-6) ...[0m
+[0;32m    azure-arm: Setting up python3-cryptography (2.6.1-3+deb10u2) ...[0m
+[0;32m    azure-arm: Setting up python3-netaddr (0.7.19-1) ...[0m
+[0;32m    azure-arm: Setting up python3-nacl (1.3.0-2) ...[0m
+[0;32m    azure-arm: Setting up apache2-utils (2.4.38-3+deb10u3) ...[0m
+[0;32m    azure-arm: Setting up python3-requests-ntlm (1.1.0-1) ...[0m
+[0;32m    azure-arm: Setting up apache2-bin (2.4.38-3+deb10u3) ...[0m
+[0;32m    azure-arm: Setting up python3-winrm (0.3.0-2) ...[0m
+[0;32m    azure-arm: Setting up python3-paramiko (2.4.2-0.1) ...[0m
+[0;32m    azure-arm: Setting up apache2 (2.4.38-3+deb10u3) ...[0m
+[0;32m    azure-arm: Enabling module mpm_event.[0m
+[0;32m    azure-arm: Enabling module authz_core.[0m
+[0;32m    azure-arm: Enabling module authz_host.[0m
+[0;32m    azure-arm: Enabling module authn_core.[0m
+[0;32m    azure-arm: Enabling module auth_basic.[0m
+[0;32m    azure-arm: Enabling module access_compat.[0m
+[0;32m    azure-arm: Enabling module authn_file.[0m
+[0;32m    azure-arm: Enabling module authz_user.[0m
+[0;32m    azure-arm: Enabling module alias.[0m
+[0;32m    azure-arm: Enabling module dir.[0m
+[0;32m    azure-arm: Enabling module autoindex.[0m
+[0;32m    azure-arm: Enabling module env.[0m
+[0;32m    azure-arm: Enabling module mime.[0m
+[0;32m    azure-arm: Enabling module negotiation.[0m
+[0;32m    azure-arm: Enabling module setenvif.[0m
+[0;32m    azure-arm: Enabling module filter.[0m
+[0;32m    azure-arm: Enabling module deflate.[0m
+[0;32m    azure-arm: Enabling module status.[0m
+[0;32m    azure-arm: Enabling module reqtimeout.[0m
+[0;32m    azure-arm: Enabling conf charset.[0m
+[0;32m    azure-arm: Enabling conf localized-error-pages.[0m
+[0;32m    azure-arm: Enabling conf other-vhosts-access-log.[0m
+[0;32m    azure-arm: Enabling conf security.[0m
+[0;32m    azure-arm: Enabling conf serve-cgi-bin.[0m
+[0;32m    azure-arm: Enabling site 000-default.[0m
+[0;32m    azure-arm: Created symlink /etc/systemd/system/multi-user.target.wants/apache2.service → /lib/systemd/system/apache2.service.[0m
+[0;32m    azure-arm: Created symlink /etc/systemd/system/multi-user.target.wants/apache-htcacheclean.service → /lib/systemd/system/apache-htcacheclean.service.[0m
+[0;32m    azure-arm: Setting up ansible (2.7.7+dfsg-1) ...[0m
+[0;32m    azure-arm: Processing triggers for systemd (241-7~deb10u2) ...[0m
+[0;32m    azure-arm: Processing triggers for man-db (2.8.5-2) ...[0m
+[0;32m    azure-arm: Processing triggers for libc-bin (2.28-10) ...[0m
+[1;32m==> azure-arm: Provisioning with shell script: /var/folders/8m/461tf7_51773gsxy14c7nj580000gn/T/packer-shell497976438[0m
+[1;31m==> azure-arm: userdel: user packer is currently used by process 1044[0m
+[1;31m==> azure-arm: userdel: packer mail spool (/var/mail/packer) not found[0m
+[0;32m    azure-arm: WARNING! The waagent service will be stopped.[0m
+[0;32m    azure-arm: WARNING! All SSH host key pairs will be deleted.[0m
+[0;32m    azure-arm: WARNING! Cached DHCP leases will be deleted.[0m
+[0;32m    azure-arm: WARNING! root password will be disabled. You will not be able to login as root.[0m
+[0;32m    azure-arm: WARNING! /etc/resolv.conf will be deleted.[0m
+[0;32m    azure-arm: WARNING! packer account and entire home directory will be deleted.[0m
+[1;32m==> azure-arm: Querying the machine's properties ...[0m
+[1;32m==> azure-arm:  -> ResourceGroupName : 'packer-Resource-Group-3a10wo9rp8'[0m
+[1;32m==> azure-arm:  -> ComputeName       : 'pkrvm3a10wo9rp8'[0m
+[1;32m==> azure-arm:  -> Managed OS Disk   : '/subscriptions/322dc7b7-1e9c-4b15-81a0-987ace809b44/resourceGroups/packer-Resource-Group-3a10wo9rp8/providers/Microsoft.Compute/disks/pkros3a10wo9rp8'[0m
+[1;32m==> azure-arm: Querying the machine's additional disks properties ...[0m
+[1;32m==> azure-arm:  -> ResourceGroupName : 'packer-Resource-Group-3a10wo9rp8'[0m
+[1;32m==> azure-arm:  -> ComputeName       : 'pkrvm3a10wo9rp8'[0m
+[1;32m==> azure-arm: Powering off machine ...[0m
+[1;32m==> azure-arm:  -> ResourceGroupName : 'packer-Resource-Group-3a10wo9rp8'[0m
+[1;32m==> azure-arm:  -> ComputeName       : 'pkrvm3a10wo9rp8'[0m
+[1;32m==> azure-arm: Capturing image ...[0m
+[1;32m==> azure-arm:  -> Compute ResourceGroupName : 'packer-Resource-Group-3a10wo9rp8'[0m
+[1;32m==> azure-arm:  -> Compute Name              : 'pkrvm3a10wo9rp8'[0m
+[1;32m==> azure-arm:  -> Compute Location          : 'East US'[0m
+[1;32m==> azure-arm:  -> Image ResourceGroupName   : 'mareak.fitec.P1.RG'[0m
+[1;32m==> azure-arm:  -> Image Name                : 'debianS2'[0m
+[1;32m==> azure-arm:  -> Image Location            : 'eastus'[0m

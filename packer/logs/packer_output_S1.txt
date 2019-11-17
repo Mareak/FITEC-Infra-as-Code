@@ -558,3 +558,18 @@
 [1;32m==> azure-arm:  -> ResourceGroupName : 'packer-Resource-Group-2yvibu1lrw'[0m
 [1;32m==> azure-arm: 
 ==> azure-arm: The resource group was created by Packer, deleting ...[0m
+[1;32m==> azure-arm: Deleting the temporary OS disk ...[0m
+[1;32m==> azure-arm:  -> OS Disk : skipping, managed disk was used...[0m
+[1;32m==> azure-arm: Deleting the temporary Additional disk ...[0m
+[1;32m==> azure-arm:  -> Additional Disk : skipping, managed disk was used...[0m
+[1;32mBuild 'azure-arm' finished.[0m
+
+==> Builds finished. The artifacts of successful builds are:
+--> azure-arm: Azure.ResourceManagement.VMImage:
+
+OSType: Linux
+ManagedImageResourceGroupName: mareak.fitec.P1.RG
+ManagedImageName: debianS0
+ManagedImageId: /subscriptions/322dc7b7-1e9c-4b15-81a0-987ace809b44/resourceGroups/mareak.fitec.P1.RG/providers/Microsoft.Compute/images/debianS0
+ManagedImageLocation: eastus
+
