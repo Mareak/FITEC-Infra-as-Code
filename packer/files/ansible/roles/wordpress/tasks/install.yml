@@ -1,0 +1,11 @@
+---
+
+- name: Update repositories cache and install "apache2/php7/mariasql-client" packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop:
+     - apache2
+     - php7.3
+     - mariadb-client

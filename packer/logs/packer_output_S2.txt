@@ -1,0 +1,9 @@
+[1;32mazure-arm output will be in this color.[0m
+
+[1;32m==> azure-arm: Running builder ...[0m
+[1;31mBuild 'azure-arm' errored: error fetching subscriptionID from VM metadata service for Managed Identity authentication: Get http://169.254.169.254/metadata/instance/compute?api-version=2017-08-01&format=json: read tcp 127.0.0.1:61405->169.254.169.254:80: read: connection reset by peer[0m
+
+==> Some builds didn't complete successfully and had errors:
+--> azure-arm: error fetching subscriptionID from VM metadata service for Managed Identity authentication: Get http://169.254.169.254/metadata/instance/compute?api-version=2017-08-01&format=json: read tcp 127.0.0.1:61405->169.254.169.254:80: read: connection reset by peer
+
+==> Builds finished but no artifacts were created.
