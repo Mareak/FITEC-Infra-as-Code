@@ -90,28 +90,28 @@ resource "azurerm_network_interface" "nicS0" {
   }
 }
 
-resource "azurerm_network_interface" "nicS0" {
-  name                = "${var.prefix}-nicS0"
+resource "azurerm_network_interface" "nicS01" {
+  name                = "${var.prefix}-nicS01"
   location            = "${azurerm_resource_group.main.location}"
   resource_group_name = "${azurerm_resource_group.main.name}"
   network_security_group_id = "${azurerm_network_security_group.main.id}"
 
   ip_configuration {
-    name                          = "${var.prefix}-nicS0-ipconf"
+    name                          = "${var.prefix}-nicS01-ipconf"
     subnet_id                     = "${azurerm_subnet.internal.id}"
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id = "${azurerm_public_ip.pip1.id}"
   }
 }
 
-resource "azurerm_network_interface" "nicS01" {
-  name                = "${var.prefix}-nicS01"
+resource "azurerm_network_interface" "nicS1" {
+  name                = "${var.prefix}-nicS1"
   location            = "${azurerm_resource_group.main.location}"
   resource_group_name = "${azurerm_resource_group.main.name}"
   dns_servers = ["10.0.2.33"]
 
   ip_configuration {
-    name                          = "${var.prefix}-nicS01-ipconf"
+    name                          = "${var.prefix}-nicS1-ipconf"
     subnet_id                     = "${azurerm_subnet.internal.id}"
     private_ip_address_allocation = "Static"
     private_ip_address = "10.0.2.34"

@@ -1,3 +1,0 @@
-[1;32mazure-arm output will be in this color.[0m
-
-[1;32m==> azure-arm: Running builder ...[0m
