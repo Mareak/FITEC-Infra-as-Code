@@ -9,3 +9,20 @@
      - apache2
      - php7.3
      - mariadb-client
+
+- name: Copy wordpress file
+  copy:
+	  src: wordpress-5.3-fr_FR.tar.gz
+	  dest: /tmp
+
+- name: Extract archive
+  unarchive:
+    src: /tmp/wordpress-5.3-fr_FR.tar.gz
+    dest: /var/www/html
+    owner: "www-data"
+    group: "www-data"
+    mode: "644"
+    remote_src: yes
+    extra_opts: [--strip-components=1]
+  notify:
+  - restart apache2
