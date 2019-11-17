@@ -164,8 +164,8 @@ resource "azurerm_virtual_machine" "S0" {
     name                  = "S0"
     location              = "${azurerm_resource_group.main.location}"
     resource_group_name   = "${azurerm_resource_group.main.name}"
-    network_interface_ids = ["${azurerm_network_interface.nicS0.id}", "${azurerm_network_interface.nicS01.id}"]
-    primary_network_interface_id = "${azurerm_network_interface.nicS0.id}"
+    network_interface_ids = ["${azurerm_network_interface.nicS01.id}", "${azurerm_network_interface.nicS0.id}"]
+    primary_network_interface_id = "${azurerm_network_interface.nicS01.id}"
     vm_size               = "Standard_DS1_v2"
 
    storage_image_reference {
