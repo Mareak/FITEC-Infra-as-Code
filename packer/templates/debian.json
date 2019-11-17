@@ -16,7 +16,7 @@
     "subscription_id": "{{user `ARM_SUBSCRIPTION_ID`}}",
 
     "managed_image_resource_group_name": "mareak.fitec.P1.RG",
-    "managed_image_name": "debianS1",
+    "managed_image_name": "debianS0",
 
     "os_type": "Linux",
     "image_publisher": "Debian",
@@ -44,20 +44,21 @@
         "apt-get -y install nginx python3 python3-apt ansible",
         "mkdir /ansible && cp -R /tmp/ansible /ansible",
         "chmod -R 755 /ansible && chown -R root:root /ansible",
-        " echo '10.0.2.36 S5' >> /etc/hosts",
         " echo '10.0.2.36 S4' >> /etc/hosts",
-        " echo '10.0.2.35 S3' >> /etc/hosts",
-        " echo '10.0.2.34 S2' >> /etc/hosts",
-        " echo '10.0.2.33 S1' >> /etc/hosts"
+        " echo '10.0.2.36 S3' >> /etc/hosts",
+        " echo '10.0.2.35 S2' >> /etc/hosts",
+        " echo '10.0.2.34 S1' >> /etc/hosts",
+        " echo '10.0.2.33 S0' >> /etc/hosts"
       ],
       "inline_shebang": "/bin/sh -x",
       "type": "shell"
       },
       {
       "type": "ansible-local",
-      "playbook_file": "packer/files/ansible/playbook.yml",
+      "playbook_file": "packer/files/ansible/playbookS0.yml",
 	  "role_paths": [
-            "packer/files/ansible/roles/dnsmasq"
+            "packer/files/ansible/roles/dnsmasq",
+            "packer/files/ansible/roles/haproxy"
       ]
       },
       {

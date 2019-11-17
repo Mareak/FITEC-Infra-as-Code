@@ -16,7 +16,7 @@
     "subscription_id": "{{user `ARM_SUBSCRIPTION_ID`}}",
 
     "managed_image_resource_group_name": "mareak.fitec.P1.RG",
-    "managed_image_name": "debianS2",
+    "managed_image_name": "debianS1",
 
     "os_type": "Linux",
     "image_publisher": "Debian",
