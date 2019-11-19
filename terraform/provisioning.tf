@@ -59,6 +59,7 @@ resource "azurerm_public_ip" "pip1" {
   name                = "${var.prefix}-pip1"
   location            = "${azurerm_resource_group.main.location}"
   resource_group_name = "${azurerm_resource_group.main.name}"
+  domain_name_label = "mareakp1"
   allocation_method   = "Static"
 }
 
