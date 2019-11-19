@@ -1,7 +1,7 @@
 ---
 
-- name: installation of dnsmasq
+- name: installation of mariadb
   import_tasks: install.yml
 
-- name: configure dmasq
+- name: configure mariadb
   import_tasks: configure.yml

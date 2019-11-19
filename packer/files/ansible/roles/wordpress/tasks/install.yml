@@ -8,12 +8,19 @@
   loop:
      - apache2
      - php7.3
+     - php7.3-mysql
+     - php7.3-curl
      - mariadb-client
 
 - name: Copy wordpress file
   copy:
-	  src: wordpress-5.3-fr_FR.tar.gz
-	  dest: /tmp
+    src: wordpress-5.3-fr_FR.tar.gz
+    dest: /tmp
+
+- name: delete index.html file
+  file:
+    path: /var/www/html/index.html
+    state: absent
 
 - name: Extract archive
   unarchive:
@@ -21,7 +28,7 @@
     dest: /var/www/html
     owner: "www-data"
     group: "www-data"
-    mode: "644"
+    mode: "755"
     remote_src: yes
     extra_opts: [--strip-components=1]
   notify:

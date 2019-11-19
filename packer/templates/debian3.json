@@ -32,15 +32,37 @@
   }],
     "provisioners": [
       {
+      "type": "file",
+      "source": "packer/files/scripts",
+      "destination": "/tmp"
+      },
+      {
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
       "inline": [
         "apt-get update",
         "apt-get upgrade -y",
-        "apt-get -y install python3 python3-apt ansible",
-		"echo 'nameserver 10.0.2.33' >> /etc/resolv.conf"
+        "apt-get -y install python3-pip ansible",
+		"echo 'nameserver 10.0.2.33' >> /etc/resolv.conf",
+        "echo 'mareak ALL=(ALL:ALL) NOPASSWD: ALL' >> /etc/sudoers"
       ],
       "inline_shebang": "/bin/sh -x",
       "type": "shell"
+      },
+      {
+      "type": "ansible-local",
+      "extra_arguments": [
+        "-e",
+        "'ansible_python_interpreter=/usr/bin/python3'"
+      ],
+      "playbook_file": "packer/files/ansible/playbookS3.yml",
+      "role_paths": [
+            "packer/files/ansible/roles/mariadb"
+      ]
+      },
+      {
+      "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
+      "type": "shell",
+      "script": "packer/files/scripts/mariadb.sh"
       },
       {
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
