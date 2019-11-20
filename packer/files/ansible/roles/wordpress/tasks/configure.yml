@@ -1,11 +1,39 @@
 ---
 
-- name: configure "wordpress"
-  template:
-    src: haproxy.cfg.j2
-    dest: /etc/haproxy/haproxy.cfg
-    owner: root
-    group: root
-    mode: '0644'
-  notify:
-    - restart haproxy
+- name: create export "DATA" folders
+  file:
+    path: /export/DATA
+    state: directory
+    owner: nobody
+    group: nogroup
+    mode: '0755'
+
+- name: Ensure group "www-data" exists
+  group:
+    name: www-data
+    state: present
+
+- name: Ensure user "www-data" exists
+  user:
+    name: www-data
+    state: present
+    groups: www-data
+
+- name: create export "WWW" folders
+  file:
+    path: /export/WWW
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: '0755'
+
+- name: Mount Azure share
+  shell: as-connect.sh
+
+- name: Create a symbolic link "/export/WWW" "/var/www/"
+  file:  
+    src: /var/www/
+    dest: /export/WWW
+    owner: www-data
+    group: www-data
+    state: link

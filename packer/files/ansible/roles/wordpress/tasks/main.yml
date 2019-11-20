@@ -3,5 +3,8 @@
 - name: installation of wordpress
   import_tasks: install.yml
 
-#- name: configure wordpress
-#  import_tasks: configure.yml
+- name: configure wordpress
+  import_tasks: configure.yml
+
+- name: Finalize
+  import_tasks: finalize.yml

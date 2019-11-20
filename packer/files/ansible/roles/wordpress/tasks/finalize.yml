@@ -1,0 +1,23 @@
+---
+
+- name: Copy wordpress file
+  copy:
+    src: wordpress-5.3-fr_FR.tar.gz
+    dest: /tmp
+
+- name: delete "index.html" file
+  file:
+    path: /var/www/html/index.html
+    state: absent
+
+- name: Extract archive
+  unarchive:
+    src: /tmp/wordpress-5.3-fr_FR.tar.gz
+    dest: /var/www/html
+    owner: "www-data"
+    group: "www-data"
+    mode: "755"
+    remote_src: yes
+    extra_opts: [--strip-components=1]
+  notify:
+  - restart apache2

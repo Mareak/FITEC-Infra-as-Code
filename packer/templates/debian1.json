@@ -36,7 +36,7 @@
       "inline": [
         "apt-get update",
         "apt-get upgrade -y",
-        "apt-get -y install python3 python3-apt ansible",
+        "apt-get -y install python3 python3-apt ansible cifs-utils",
 		"echo 'nameserver 10.0.2.33' >> /etc/resolv.conf"
       ],
       "inline_shebang": "/bin/sh -x",

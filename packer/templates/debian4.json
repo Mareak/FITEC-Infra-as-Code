@@ -43,6 +43,17 @@
       "type": "shell"
       },
       {
+      "type": "ansible-local",
+      "extra_arguments": [
+        "-e",
+        "'ansible_python_interpreter=/usr/bin/python3'"
+      ],
+      "playbook_file": "packer/files/ansible/playbookS4.yml",
+      "role_paths": [
+            "packer/files/ansible/roles/nfs"
+      ]
+      },
+      {
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
       "inline": [
         "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"
