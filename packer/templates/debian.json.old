@@ -62,7 +62,7 @@
       {
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
       "type": "shell",
-      "script": "packer/files/scripts/storage-az2.sh"
+      "script": "packer/files/scripts/mariadb.sh"
       },
       {
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",

@@ -10,10 +10,30 @@
     path: /var/www/html/index.html
     state: absent
 
-- name: Extract archive
+- name: Extract archive site1
   unarchive:
     src: /tmp/wordpress-5.3-fr_FR.tar.gz
-    dest: /var/www/html
+    dest: /var/www/html/w1
+    owner: "www-data"
+    group: "www-data"
+    mode: "755"
+    remote_src: yes
+    extra_opts: [--strip-components=1]
+
+- name: Extract archive site2
+  unarchive:
+    src: /tmp/wordpress-5.3-fr_FR.tar.gz
+    dest: /var/www/html/w2
+    owner: "www-data"
+    group: "www-data"
+    mode: "755"
+    remote_src: yes
+    extra_opts: [--strip-components=1]
+
+- name: Extract archive site3
+  unarchive:
+    src: /tmp/wordpress-5.3-fr_FR.tar.gz
+    dest: /var/www/html/w3
     owner: "www-data"
     group: "www-data"
     mode: "755"

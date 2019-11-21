@@ -2,6 +2,9 @@
 
 - name: Update repositories cache and install "mariadb" package
   apt:
-    name: mariadb-server
+    name: "{{ item }}"
     state: present
     update_cache: yes
+  loop:
+    - mariadb-server 
+    - cifs-utils

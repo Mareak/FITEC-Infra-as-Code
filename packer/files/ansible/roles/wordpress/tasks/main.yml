@@ -6,5 +6,6 @@
 - name: configure wordpress
   import_tasks: configure.yml
 
-- name: Finalize
-  import_tasks: finalize.yml
+#1st Installation
+#- name: Finalize
+#  import_tasks: finalize.yml

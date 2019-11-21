@@ -24,6 +24,12 @@ resource "azurerm_storage_share" "main" {
   quota                = 5
 }
 
+resource "azurerm_storage_share" "second" {
+  name                 = "mareak-p1-share-sql"
+  storage_account_name = "${azurerm_storage_account.main.name}"
+  quota                = 5
+}
+
 resource "azurerm_network_security_group" "main" {
   name     = "${var.prefix}-webservers"
   location = "${azurerm_resource_group.main.location}"

@@ -14,5 +14,5 @@ frontend proxy
 
 backend backendnodes
  balance roundrobin
- server node1 S1.infra:80 check
- server node2 S2.infra:80 check
+ server node1 S1.infra:80 check cookie node1
+ server node2 S2.infra:80 check cookie node2

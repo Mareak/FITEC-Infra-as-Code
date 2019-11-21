@@ -8,32 +8,37 @@
     group: nogroup
     mode: '0755'
 
-- name: Ensure group "www-data" exists
-  group:
-    name: www-data
-    state: present
+#PRE-REQUIREMENT
+#- name: Ensure group "www-data" exists
+#  group:
+#    name: www-data
+#    state: present
 
-- name: Ensure user "www-data" exists
-  user:
-    name: www-data
-    state: present
-    groups: www-data
+#- name: Ensure user "www-data" exists
+#  user:
+#    name: www-data
+#    state: present
+#    groups: www-data
 
-- name: create export "WWW" folders
-  file:
-    path: /export/WWW
-    state: directory
-    owner: www-data
-    group: www-data
-    mode: '0755'
+#- name: create export "WWW" folders
+#  file:
+#    path: "{{ item }}"
+#    mode: '0755'
+#    state: directory
+#  loop:
+#    - /export/WWW
+#    - /var/www/html/w1
+#    - /var/www/html/w2
+#    - /var/www/html/w3
 
-- name: Mount Azure share
-  shell: as-connect.sh
+- name: Delete html files
+  shell:
+    cmd: rm -rf /var/www/html/*
 
-- name: Create a symbolic link "/export/WWW" "/var/www/"
-  file:  
-    src: /var/www/
-    dest: /export/WWW
-    owner: www-data
-    group: www-data
-    state: link
+- name: configure virtualhosts
+  template:
+    src: 000-default.conf.j2
+    dest: /etc/apache2/sites-available/000-default.conf
+    owner: root
+    group: root
+    mode: '0644'

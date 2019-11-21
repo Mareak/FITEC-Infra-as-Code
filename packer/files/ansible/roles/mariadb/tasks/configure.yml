@@ -6,8 +6,8 @@
     owner: root
     group: root
     mode: '0644'
-  notify:
-    - restart mariadb
+  #notify:
+  #  - restart mariadb
 
 - name: Install dependencies 1/2
   apt:
@@ -19,6 +19,10 @@
 - name: Install dependencies 2/2
   pip:
     name: PyMySQL
+
+- name: Delete mysql files
+  shell:
+    cmd: rm -rf /var/lib/mysql/*
 
 #- name: Check if a custom root password is specified
 #  debug:
