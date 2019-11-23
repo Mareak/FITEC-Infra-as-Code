@@ -20,9 +20,17 @@
   pip:
     name: PyMySQL
 
-- name: Delete mysql files
-  shell:
-    cmd: rm -rf /var/lib/mysql/*
+- name: create export "DATA" folders
+  file:
+    path: "{{ item }}"
+    mode: '0755'
+    state: directory
+  loop:
+    - /export/DATA
+
+#- name: Delete mysql files
+#  shell:
+#    cmd: rm -rf /var/lib/mysql/*
 
 #- name: Check if a custom root password is specified
 #  debug:

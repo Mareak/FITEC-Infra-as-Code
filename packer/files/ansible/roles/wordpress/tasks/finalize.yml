@@ -5,11 +5,6 @@
     src: wordpress-5.3-fr_FR.tar.gz
     dest: /tmp
 
-- name: delete "index.html" file
-  file:
-    path: /var/www/html/index.html
-    state: absent
-
 - name: Extract archive site1
   unarchive:
     src: /tmp/wordpress-5.3-fr_FR.tar.gz
