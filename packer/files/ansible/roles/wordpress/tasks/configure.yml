@@ -8,6 +8,12 @@
     group: nogroup
     mode: '0755'
 
+- name: configure NFS
+  lineinfile:
+    path: /etc/bash.bashrc
+    line: echo "Mounting NFS" && sudo mount -t nfs S4.infra:/export/NFS /export/DATA
+    create: yes
+
 #PRE-REQUIREMENT
 #- name: Ensure group "www-data" exists
 #  group:

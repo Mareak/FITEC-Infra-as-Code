@@ -1,3 +1,6 @@
+variable "UN" {}
+variable "PW" {}
+
 provider "azurerm" {
 }
 
@@ -10,36 +13,45 @@ resource "azurerm_resource_group" "main" {
         location = "eastus"
 }
 
+resource "azurerm_storage_account" "test" {
+  name                     = "mareakp1storagessd"
+  resource_group_name      = azurerm_resource_group.main.name
+  location                 = azurerm_resource_group.main.location
+  account_tier             = "Premium"
+  account_kind             = "FileStorage"
+  account_replication_type = "LRS"
+}
+
+resource "azurerm_storage_share" "test" {
+  name                 = "mareak-p1-share-ssd"
+  storage_account_name = azurerm_storage_account.test.name
+  quota                = 5
+}
+
 resource "azurerm_storage_account" "main" {
   name                     = "mareakp1storageacc"
-  resource_group_name      = "${azurerm_resource_group.main.name}"
-  location                 = "${azurerm_resource_group.main.location}"
+  resource_group_name      = azurerm_resource_group.main.name
+  location                 = azurerm_resource_group.main.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
 }
 
-resource "azurerm_storage_share" "main" {
-  name                 = "mareak-p1-share"
-  storage_account_name = "${azurerm_storage_account.main.name}"
-  quota                = 5
-}
-
 resource "azurerm_storage_share" "second" {
   name                 = "mareak-p1-share-sql"
-  storage_account_name = "${azurerm_storage_account.main.name}"
+  storage_account_name = azurerm_storage_account.main.name
   quota                = 5
 }
 
 resource "azurerm_network_security_group" "main" {
   name     = "${var.prefix}-webservers"
-  location = "${azurerm_resource_group.main.location}"
-  resource_group_name = "${azurerm_resource_group.main.name}"
+  location = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
 }
 
 resource "azurerm_network_security_rule" "web" {
-  name                       = "{var.prefix}-http-access-rule"
-  network_security_group_name = "${azurerm_network_security_group.main.name}"
-  resource_group_name         = "${azurerm_resource_group.main.name}"
+  name                       = "${var.prefix}-http-access-rule"
+  network_security_group_name = azurerm_network_security_group.main.name
+  resource_group_name         = azurerm_resource_group.main.name
   priority                    = 100
   direction                   = "Inbound"
   access                      = "Allow"
@@ -52,33 +64,33 @@ resource "azurerm_network_security_rule" "web" {
 
 data "azurerm_image" "image" {
   name                = "debianS0"
-  resource_group_name = "${azurerm_resource_group.main.name}"
+  resource_group_name = azurerm_resource_group.main.name
 }
 
 data "azurerm_image" "image1" {
   name                = "debianS1"
-  resource_group_name = "${azurerm_resource_group.main.name}"
+  resource_group_name = azurerm_resource_group.main.name
 }
 
 data "azurerm_image" "image2" {
   name                = "debianS2"
-  resource_group_name = "${azurerm_resource_group.main.name}"
+  resource_group_name = azurerm_resource_group.main.name
 }
 
 data "azurerm_image" "image3" {
   name                = "debianS3"
-  resource_group_name = "${azurerm_resource_group.main.name}"
+  resource_group_name = azurerm_resource_group.main.name
 }
 
 data "azurerm_image" "image4" {
   name                = "debianS4"
-  resource_group_name = "${azurerm_resource_group.main.name}"
+  resource_group_name = azurerm_resource_group.main.name
 }
 
 resource "azurerm_public_ip" "pip1" {
   name                = "${var.prefix}-pip1"
-  location            = "${azurerm_resource_group.main.location}"
-  resource_group_name = "${azurerm_resource_group.main.name}"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
   domain_name_label = "mareakp1"
   allocation_method   = "Static"
 }
@@ -86,26 +98,26 @@ resource "azurerm_public_ip" "pip1" {
 resource "azurerm_virtual_network" "main" {
   name                = "${var.prefix}-network"
   address_space       = ["10.0.0.0/16"]
-  location            = "${azurerm_resource_group.main.location}"
-  resource_group_name = "${azurerm_resource_group.main.name}"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
 }
 
 resource "azurerm_subnet" "internal" {
   name                 = "${var.prefix}-subnet-internal"
-  resource_group_name  = "${azurerm_resource_group.main.name}"
-  virtual_network_name = "${azurerm_virtual_network.main.name}"
+  resource_group_name  = azurerm_resource_group.main.name
+  virtual_network_name = azurerm_virtual_network.main.name
   address_prefix       = "10.0.2.0/24"
 }
 
 resource "azurerm_network_interface" "nicS0" {
   name                = "${var.prefix}-nicS0"
-  location            = "${azurerm_resource_group.main.location}"
-  resource_group_name = "${azurerm_resource_group.main.name}"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
   dns_servers = ["10.0.2.33"]
 
   ip_configuration {
     name                          = "${var.prefix}-nicS0-ipconf"
-    subnet_id                     = "${azurerm_subnet.internal.id}"
+    subnet_id                     = azurerm_subnet.internal.id
     private_ip_address_allocation = "Static"
     private_ip_address = "10.0.2.33"
   }
@@ -113,27 +125,27 @@ resource "azurerm_network_interface" "nicS0" {
 
 resource "azurerm_network_interface" "nicS01" {
   name                = "${var.prefix}-nicS01"
-  location            = "${azurerm_resource_group.main.location}"
-  resource_group_name = "${azurerm_resource_group.main.name}"
-  network_security_group_id = "${azurerm_network_security_group.main.id}"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
+  network_security_group_id = azurerm_network_security_group.main.id
 
   ip_configuration {
     name                          = "${var.prefix}-nicS01-ipconf"
-    subnet_id                     = "${azurerm_subnet.internal.id}"
+    subnet_id                     = azurerm_subnet.internal.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = "${azurerm_public_ip.pip1.id}"
+    public_ip_address_id = azurerm_public_ip.pip1.id
   }
 }
 
 resource "azurerm_network_interface" "nicS1" {
   name                = "${var.prefix}-nicS1"
-  location            = "${azurerm_resource_group.main.location}"
-  resource_group_name = "${azurerm_resource_group.main.name}"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
   dns_servers = ["10.0.2.33"]
 
   ip_configuration {
     name                          = "${var.prefix}-nicS1-ipconf"
-    subnet_id                     = "${azurerm_subnet.internal.id}"
+    subnet_id                     = azurerm_subnet.internal.id
     private_ip_address_allocation = "Static"
     private_ip_address = "10.0.2.34"
   }
@@ -141,13 +153,13 @@ resource "azurerm_network_interface" "nicS1" {
 
 resource "azurerm_network_interface" "nicS2" {
   name                = "${var.prefix}-nicS2"
-  location            = "${azurerm_resource_group.main.location}"
-  resource_group_name = "${azurerm_resource_group.main.name}"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
   dns_servers = ["10.0.2.33"]
 
   ip_configuration {
     name                          = "${var.prefix}-nicS2-ipconf"
-    subnet_id                     = "${azurerm_subnet.internal.id}"
+    subnet_id                     = azurerm_subnet.internal.id
     private_ip_address_allocation = "Static"
     private_ip_address = "10.0.2.35"
   }
@@ -155,13 +167,13 @@ resource "azurerm_network_interface" "nicS2" {
 
 resource "azurerm_network_interface" "nicS3" {
   name                = "${var.prefix}-nicS3"
-  location            = "${azurerm_resource_group.main.location}"
-  resource_group_name = "${azurerm_resource_group.main.name}"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
   dns_servers = ["10.0.2.33"]
 
   ip_configuration {
     name                          = "${var.prefix}-nicS3-ipconf"
-    subnet_id                     = "${azurerm_subnet.internal.id}"
+    subnet_id                     = azurerm_subnet.internal.id
     private_ip_address_allocation = "Static"
     private_ip_address = "10.0.2.36"
   }
@@ -169,13 +181,13 @@ resource "azurerm_network_interface" "nicS3" {
 
 resource "azurerm_network_interface" "nicS4" {
   name                = "${var.prefix}-nicS4"
-  location            = "${azurerm_resource_group.main.location}"
-  resource_group_name = "${azurerm_resource_group.main.name}"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
   dns_servers = ["10.0.2.33"]
     
   ip_configuration {
     name                          = "${var.prefix}-nicS4-ipconf"
-    subnet_id                     = "${azurerm_subnet.internal.id}"
+    subnet_id                     = azurerm_subnet.internal.id
     private_ip_address_allocation = "Static"
     private_ip_address = "10.0.2.37"
   }
@@ -183,14 +195,14 @@ resource "azurerm_network_interface" "nicS4" {
 
 resource "azurerm_virtual_machine" "S0" {
     name                  = "S0"
-    location              = "${azurerm_resource_group.main.location}"
-    resource_group_name   = "${azurerm_resource_group.main.name}"
-    network_interface_ids = ["${azurerm_network_interface.nicS01.id}", "${azurerm_network_interface.nicS0.id}"]
-    primary_network_interface_id = "${azurerm_network_interface.nicS01.id}"
+    location              = azurerm_resource_group.main.location
+    resource_group_name   = azurerm_resource_group.main.name
+    network_interface_ids = [azurerm_network_interface.nicS01.id, azurerm_network_interface.nicS0.id]
+    primary_network_interface_id = azurerm_network_interface.nicS01.id
     vm_size               = "Standard_DS1_v2"
 
    storage_image_reference {
-    id="${data.azurerm_image.image.id}"
+    id=data.azurerm_image.image.id
   }
 
   storage_os_disk {
@@ -201,8 +213,8 @@ resource "azurerm_virtual_machine" "S0" {
   }
   os_profile {
     computer_name  = "S0"
-    admin_username = "mareak"
-    admin_password = "Password1234!"
+    admin_username = var.UN
+    admin_password = var.PW
   }
   os_profile_linux_config {
     disable_password_authentication = false
@@ -214,13 +226,13 @@ resource "azurerm_virtual_machine" "S0" {
 
 resource "azurerm_virtual_machine" "S1" {
     name                  = "S1"
-    location              = "${azurerm_resource_group.main.location}"
-    resource_group_name   = "${azurerm_resource_group.main.name}"
-    network_interface_ids = ["${azurerm_network_interface.nicS1.id}"]
+    location              = azurerm_resource_group.main.location
+    resource_group_name   = azurerm_resource_group.main.name
+    network_interface_ids = [azurerm_network_interface.nicS1.id]
     vm_size               = "Standard_DS1_v2"
 
    storage_image_reference {
-    id="${data.azurerm_image.image1.id}"
+    id=data.azurerm_image.image1.id
   }
 
   storage_os_disk {
@@ -244,13 +256,13 @@ resource "azurerm_virtual_machine" "S1" {
 
 resource "azurerm_virtual_machine" "S2" {
     name                  = "S2"
-    location              = "${azurerm_resource_group.main.location}"
-    resource_group_name   = "${azurerm_resource_group.main.name}"
-    network_interface_ids = ["${azurerm_network_interface.nicS2.id}"]
+    location              = azurerm_resource_group.main.location
+    resource_group_name   = azurerm_resource_group.main.name
+    network_interface_ids = [azurerm_network_interface.nicS2.id]
     vm_size               = "Standard_DS1_v2"
 
    storage_image_reference {
-    id="${data.azurerm_image.image2.id}"
+    id=data.azurerm_image.image2.id
   }
 
   storage_os_disk {
@@ -261,8 +273,8 @@ resource "azurerm_virtual_machine" "S2" {
   }
   os_profile {
     computer_name  = "S2"
-    admin_username = "mareak"
-    admin_password = "Password1234!"
+    admin_username = var.UN
+    admin_password = var.PW
   }
   os_profile_linux_config {
     disable_password_authentication = false
@@ -274,13 +286,13 @@ resource "azurerm_virtual_machine" "S2" {
 
 resource "azurerm_virtual_machine" "S3" {
     name                  = "S3"
-    location              = "${azurerm_resource_group.main.location}"
-    resource_group_name   = "${azurerm_resource_group.main.name}"
-    network_interface_ids = ["${azurerm_network_interface.nicS3.id}"]
+    location              = azurerm_resource_group.main.location
+    resource_group_name   = azurerm_resource_group.main.name
+    network_interface_ids = [azurerm_network_interface.nicS3.id]
     vm_size               = "Standard_DS1_v2"
 
    storage_image_reference {
-    id="${data.azurerm_image.image3.id}"
+    id=data.azurerm_image.image3.id
   }
 
   storage_os_disk {
@@ -291,8 +303,8 @@ resource "azurerm_virtual_machine" "S3" {
   }
   os_profile {
     computer_name  = "S3"
-    admin_username = "mareak"
-    admin_password = "Password1234!"
+    admin_username = var.UN
+    admin_password = var.PW
   }
   os_profile_linux_config {
     disable_password_authentication = false
@@ -304,13 +316,13 @@ resource "azurerm_virtual_machine" "S3" {
 
 resource "azurerm_virtual_machine" "S4" {
     name                  = "S4"
-    location              = "${azurerm_resource_group.main.location}"
-    resource_group_name   = "${azurerm_resource_group.main.name}"
-    network_interface_ids = ["${azurerm_network_interface.nicS4.id}"]
+    location              = azurerm_resource_group.main.location
+    resource_group_name   = azurerm_resource_group.main.name
+    network_interface_ids = [azurerm_network_interface.nicS4.id]
     vm_size               = "Standard_DS1_v2"
 
    storage_image_reference {
-    id="${data.azurerm_image.image4.id}"
+    id=data.azurerm_image.image4.id
   }
 
   storage_os_disk {
@@ -321,8 +333,8 @@ resource "azurerm_virtual_machine" "S4" {
   }
   os_profile {
     computer_name  = "S4"
-    admin_username = "mareak"
-    admin_password = "Password1234!"
+    admin_username = var.UN
+    admin_password = var.PW
   }
   os_profile_linux_config {
     disable_password_authentication = false

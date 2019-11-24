@@ -1,0 +1,6 @@
+export.sh
+terraform/.terraform/plugins/darwin_amd64/terraform-provider-azurerm_v1.36.1_x4
+packer/files/scripts/*
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/.terraform/*

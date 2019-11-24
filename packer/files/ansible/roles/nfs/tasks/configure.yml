@@ -1,4 +1,9 @@
 ---
+- name: create NFS folder "/export/NFS"
+  file:
+    path: /export/NFS
+    state: directory
+    mode: '0755'
 
 - name: configure "nfs"
   template:
