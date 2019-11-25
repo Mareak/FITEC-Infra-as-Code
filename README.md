@@ -1,7 +1,17 @@
 # mareak-fitec-P1
 
-A project on the infrastucture as code based on PACKER, ANSIBLE and TERRRAFORM
+A project on the infrastucture as code based on PACKER, ANSIBLE, TERRRAFORM and AZURE CLOUD.
 
-* Prerequisites :
+This infrastructure is composed of multiple things:
 
-Understand the principe of infra as code.
+- 5 vms (S0, S1, S2, S3, S4).
+- S0 : dnsmask(Dns), haproxy(Reverse proxy).
+- S1, S2 : wordpress(Website).
+- S3 : mariadb(Database).
+- S4 : NFS server(Nfs).
+
+
+* How it Works :
+
+1. Add your own credentials to connect to azure.
+2. Use terraform and deploy your infrastructure.
