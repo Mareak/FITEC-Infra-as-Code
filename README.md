@@ -10,6 +10,7 @@ This infrastructure is composed of multiple things:
 - S3 : mariadb(Database).
 - S4 : NFS server(Nfs).
 
+The script also use Azure file shares (premium type for speed access) to mount the web files on both website servers.
 
 * How it Works :
 
