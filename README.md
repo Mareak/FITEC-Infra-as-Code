@@ -1,6 +1,6 @@
 # mareak-fitec-P1
 
-A project on the infrastucture as code based on PACKER, ANSIBLE, TERRAFORM and AZURE CLOUD.
+A project on infrastucture as code. Based on PACKER, ANSIBLE, TERRAFORM and AZURE CLOUD.
 
 This infrastructure is composed of multiple things:
 
